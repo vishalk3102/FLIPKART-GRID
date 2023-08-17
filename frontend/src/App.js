@@ -8,8 +8,9 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        <Route exact to='/' element={<ProductList />} />
-        <Route exact to='/products' element={<ProductList />} />
+        {/* <Route exact to='/products' element={<ProductList />} /> */}
+        <Route exact path='/' element={<ProductList />} />
+        {/* <Route exact path='/about' element={<ProductList />} /> */}
       </Routes>
     </>
   )

@@ -18,6 +18,13 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(fileUpload())
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONTEND_URL,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  })
+)
 
 // Route Imports
 const product = require('./routes/productRoute')
