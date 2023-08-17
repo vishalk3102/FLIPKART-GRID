@@ -21,18 +21,16 @@ require('dotenv').config({ path: 'backend/config/config.env' })
 // Connecting to database
 connectDatabase()
 
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET
-// })
-
 app.use(cors())
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
   next()
+})
+
+app.get('/', (req, res, next) => {
+  res.send('<h1>welcome  to flipkart grid </h1>;')
 })
 
 const server = app.listen(process.env.PORT, () => {
