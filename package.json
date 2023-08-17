@@ -1,7 +1,7 @@
 {
-  "name": "dropoff",
+  "name": "flipkart",
   "version": "1.0.0",
-  "description": "full stack courier delivery website ",
+  "description": "flipkart grid project",
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
