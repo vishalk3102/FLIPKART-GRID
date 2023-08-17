@@ -3,6 +3,7 @@ const app = express()
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
+const cors = require('cors')
 // const path = require('path')
 
 const errorMiddleware = require('./middleware/error')
