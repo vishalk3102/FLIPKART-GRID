@@ -29,7 +29,10 @@ import {
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  UPDATE_INTERACTION_SUCCESS,
+  UPDATE_INTERACTION_REQUEST,
+  UPDATE_INTERACTION_FAIL
 } from '../../constants/productConstants'
 
 // Get All Products
@@ -39,13 +42,13 @@ export const getProduct =
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST })
 
-      /*   let link = `${server}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
+      // let link = `${server}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
 
-      if (category) {
+      /*   if (category) {
         link = `${server}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
       } */
 
-      let link = `${server}/products`
+      let link = `${server}/products?keyword=${keyword}`
 
       const { data } = await axios.get(link)
 
@@ -148,4 +151,26 @@ export const getProductDetails = id => async dispatch => {
 // Clearing Errors
 export const clearErrors = () => async dispatch => {
   dispatch({ type: CLEAR_ERRORS })
+}
+
+export const updateInteractions = (productId, userId) => async dispatch => {
+  try {
+    dispatch({ type: UPDATE_INTERACTION_REQUEST })
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+    const { data } = await axios.put(
+      `${server}/product/${productId}`,
+      {
+        productId,
+        userId
+      },
+      config
+    )
+    dispatch({ type: UPDATE_INTERACTION_SUCCESS, payload: data.user })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_INTERACTION_SUCCESS,
+      payload: error.response.data.message
+    })
+  }
 }

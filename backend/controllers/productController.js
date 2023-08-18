@@ -1,7 +1,9 @@
 const Product = require('../models/productModel')
+const User = require('../models/userModel')
 const ErrorHander = require('../utils/errorhander')
 const catchAsyncErrors = require('../middleware/catchAsyncErrors')
 const ApiFeatures = require('../utils/apifeatures')
+const ObjectID = require('mongodb').ObjectId
 
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
@@ -53,12 +55,11 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
 // Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id)
+  let product = await Product.findById(req.params.id)
 
   if (!product) {
     return next(new ErrorHander('Product not found', 404))
   }
-
   res.status(200).json({
     success: true,
     product

@@ -29,7 +29,9 @@ const userSchema = new mongoose.Schema({
   },
   interactions: [
     {
-      type: Number
+      productId: {
+        type: String
+      }
     }
   ],
   createdAt: {

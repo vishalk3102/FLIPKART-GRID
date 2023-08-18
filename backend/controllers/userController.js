@@ -3,6 +3,7 @@ const catchAsyncErrors = require('../middleware/catchAsyncErrors')
 const User = require('../models/userModel')
 const sendToken = require('../utils/jwtToken')
 const crypto = require('crypto')
+const ObjectId = require('mongodb').ObjectId
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -110,5 +111,46 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'User Deleted Successfully'
+  })
+})
+exports.updateInteractions = catchAsyncErrors(async (req, res, next) => {
+  let productId = req.body.productId
+  // let userId = req.body.userId
+  let userId = req.params.id
+  // let interaction = {
+  //   productId: req.body.productId
+  // }
+  console.log(req.body.userId)
+  console.log(userId)
+  console.log(req.body.productId)
+
+  // let query = { _id: req.params.userId }
+  // let update = { $push: { interactions: { productId: 'AJKSHDLSL' } } }
+  // // const user = await User.findByIdAndUpdate(req.params.userId, newUserData, {
+  // //   new: true,
+  // //   runValidators: true,
+  // //   useFindAndModify: false
+  // // })
+
+  // const updatedUser = await User.findByIdAndUpdate(
+  //   { _id: req.params.id },
+  //   { $push: { interactions: { productId } } },
+  //   { new: true }
+  // )
+  const updatedUser = await User.updateOne(
+    {
+      role: 'admin'
+    },
+    { $push: { interactions: { productId } } }
+  )
+
+  // await User.findOneAndUpdate(userId, update)
+  // const user = await User.findById({ _id: userId })
+  console.log(updatedUser)
+  res.status(200).json({
+    success: true,
+    // updatedUser,
+    // user,
+    message: 'Interaction updated Successfully'
   })
 })

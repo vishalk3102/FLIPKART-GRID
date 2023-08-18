@@ -3,11 +3,13 @@ import {
   productDetailsReducer,
   productsReducer
 } from './reducers/productReducer'
+import { userReducer } from './reducers/userReducer'
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
-    productDetails: productDetailsReducer
+    productDetails: productDetailsReducer,
+    user: userReducer
   }
 })
 

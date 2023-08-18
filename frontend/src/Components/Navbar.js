@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 import { AiOutlineUser, AiOutlineShoppingCart } from 'react-icons/ai'
 
 const Navbar = () => {
+  const [keyword, setKeyword] = useState('')
+  const navigate = useNavigate()
+
+  const submitHandler = e => {
+    e.preventDefault()
+    console.log(keyword)
+    navigate(`/${keyword}`)
+  }
   return (
     <>
       <div
@@ -10,17 +19,23 @@ const Navbar = () => {
         className='text-[#fff] bg-[#000] w-full h-[4rem] grid grid-cols-5'
       >
         <div className='logo p-2 col-span-1  flex justify-center items-center'>
-          <h2 className='text-[1rem]  sm:text-xl md:text-2xl font-bold uppercase'>
-            Flipkart
-          </h2>
+          <Link to='/'>
+            <h2 className='text-[1rem]  sm:text-xl md:text-2xl font-bold uppercase'>
+              Flipkart
+            </h2>
+          </Link>
         </div>
         <div className='search-box w-full col-span-3 my-auto'>
           <div className='flex justify-center md:justify-start items-center flex-row mx-auto'>
             <input
               type='text'
-              className=' w-[80%] md:w-[100%] h-[2.5rem] border-solid border-black border-2 rounded-[3rem] '
+              className=' w-[80%] text-black md:w-[100%] h-[2.5rem] border-solid border-black border-2 rounded-[3rem] '
+              onChange={e => setKeyword(e.target.value)}
             />
-            <span className='p-1  relative right-10 hover:cursor-pointer'>
+            <span
+              className='p-1  relative right-10 hover:cursor-pointer'
+              onClick={e => submitHandler(e)}
+            >
               <BsSearch size={24} className='text-[#000]' />
             </span>
           </div>

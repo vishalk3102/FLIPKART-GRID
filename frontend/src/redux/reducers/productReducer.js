@@ -31,7 +31,10 @@ import {
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_RESET,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  UPDATE_INTERACTION_REQUEST,
+  UPDATE_INTERACTION_SUCCESS,
+  UPDATE_INTERACTION_FAIL
 } from '../../constants/productConstants'
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -162,12 +165,27 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         loading: true,
         ...state
       }
+    case UPDATE_INTERACTION_REQUEST:
+      return {
+        loading: true,
+        ...state
+      }
     case PRODUCT_DETAILS_SUCCESS:
       return {
         loading: false,
         product: action.payload
       }
+    case UPDATE_INTERACTION_SUCCESS:
+      return {
+        loading: false,
+        product: action.payload
+      }
     case PRODUCT_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    case UPDATE_INTERACTION_FAIL:
       return {
         loading: false,
         error: action.payload

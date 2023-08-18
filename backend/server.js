@@ -1,5 +1,4 @@
 const app = require('./app')
-let cors = require('cors')
 
 // const cloudinary = require('cloudinary')
 const connectDatabase = require('./config/database')
@@ -20,14 +19,6 @@ require('dotenv').config({ path: 'backend/config/config.env' })
 
 // Connecting to database
 connectDatabase()
-
-app.use(cors())
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-  next()
-})
 
 app.get('/', (req, res, next) => {
   res.send('<h1>welcome  to flipkart grid </h1>;')
