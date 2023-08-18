@@ -153,24 +153,24 @@ export const clearErrors = () => async dispatch => {
   dispatch({ type: CLEAR_ERRORS })
 }
 
-export const updateInteractions = (productId, userId) => async dispatch => {
-  try {
-    dispatch({ type: UPDATE_INTERACTION_REQUEST })
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+// export const updateInteractions = (productId, userId) => async dispatch => {
+//   try {
+//     dispatch({ type: UPDATE_INTERACTION_REQUEST })
+//     const config = { headers: { 'Content-Type': 'multipart/form-data' } }
 
-    const { data } = await axios.put(
-      `${server}/product/${productId}`,
-      {
-        productId,
-        userId
-      },
-      config
-    )
-    dispatch({ type: UPDATE_INTERACTION_SUCCESS, payload: data.user })
-  } catch (error) {
-    dispatch({
-      type: UPDATE_INTERACTION_SUCCESS,
-      payload: error.response.data.message
-    })
-  }
-}
+//     const { data } = await axios.put(
+//       `${server}/product/${productId}`,
+//       {
+//         productId,
+//         userId
+//       },
+//       config
+//     )
+//     dispatch({ type: UPDATE_INTERACTION_SUCCESS, payload: data.user })
+//   } catch (error) {
+//     dispatch({
+//       type: UPDATE_INTERACTION_SUCCESS,
+//       payload: error.response.data.message
+//     })
+//   }
+// }

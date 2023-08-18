@@ -7,6 +7,8 @@ import {
   getProductDetails,
   updateInteractions
 } from '../redux/actions/productAction'
+import FeaturedProduct from './Product/FeaturedProduct'
+import LikedProduct from './Product/LikedProduct'
 
 const ProductLanding = () => {
   const params = useParams()
@@ -20,7 +22,7 @@ const ProductLanding = () => {
 
   useEffect(() => {
     dispatch(getProductDetails(productId))
-    dispatch(updateInteractions(productId, userId))
+    // dispatch(updateInteractions(productId, userId))
   }, [dispatch, productId, userId])
 
   return (
@@ -85,6 +87,10 @@ const ProductLanding = () => {
           </div>
         </div>
       </div>
+      {/*  <div className=''>
+        <FeaturedProduct />
+        <LikedProduct />
+      </div> */}
     </>
   )
 }
