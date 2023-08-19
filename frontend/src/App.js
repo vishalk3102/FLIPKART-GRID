@@ -9,6 +9,7 @@ import Home from './Components/Home/Home'
 import Products from './Components/Product/Products'
 import ProductDetails from './Components/Product/ProductDetails'
 import { useSelector } from 'react-redux'
+import Test from './Components/test'
 
 const App = () => {
   const { loading, user, isAuthenticated } = useSelector(state => state.user)
@@ -23,6 +24,9 @@ const App = () => {
         <Route exact path='/products' element={<Products />} />
         <Route exact path='/products/:keyword' element={<Products />} />
         <Route exact path='/product/:id' element={<ProductDetails />} />
+
+        <Route exact path='/recommend' element={<Test />} />
+
         {/* <Route exact path='/product/:keyword' element={<ProductList />} /> */}
       </Routes>
     </>

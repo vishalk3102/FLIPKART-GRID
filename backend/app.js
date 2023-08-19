@@ -36,9 +36,12 @@ app.use((req, res, next) => {
 // Route Imports
 const product = require('./routes/productRoute')
 const user = require('./routes/userRoute')
+// const recommend = require('./routes/recommendRoute')
+const recommend = require('./routes/recommendRoute')
 
 app.use('/api/v1', product)
 app.use('/api/v1', user)
+app.use('/api/v1', recommend)
 
 // Middleware for Errors
 app.use(errorMiddleware)

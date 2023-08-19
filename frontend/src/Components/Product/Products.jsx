@@ -101,7 +101,7 @@ const Products = ({ match }) => {
             </div>
           </div>
           <div className='col-span-10 h-[100%] w-[100%]'>
-            <div className='flex '>
+            <div className='flex  '>
               {products &&
                 products.map(product => (
                   <ProductCard key={product._id} product={product} />

@@ -2,26 +2,26 @@ import {
   UPDATE_INTERACTION_REQUEST,
   UPDATE_INTERACTION_SUCCESS,
   UPDATE_INTERACTION_FAIL,
+  RECOMMEND_REQUEST,
+  RECOMMEND_SUCCESS,
+  RECOMMEND_FAIL,
   CLEAR_ERRORS
 } from '../../constants/recommendConstants'
 
-export const productsReducer = (state = { products: [] }, action) => {
+export const recommendReducer = (state = {}, action) => {
   switch (action.type) {
-    case UPDATE_INTERACTION_REQUEST:
+    case RECOMMEND_REQUEST:
       return {
         loading: true,
-        products: []
+        ...state
       }
-    case UPDATE_INTERACTION_SUCCESS:
+    case RECOMMEND_SUCCESS:
       return {
         loading: false,
-        products: action.payload.products,
-        productsCount: action.payload.productsCount,
-        resultPerPage: action.payload.resultPerPage,
-        filteredProductsCount: action.payload.filteredProductsCount
+        message: action.payload
       }
 
-    case UPDATE_INTERACTION_FAIL:
+    case RECOMMEND_FAIL:
       return {
         loading: false,
         error: action.payload

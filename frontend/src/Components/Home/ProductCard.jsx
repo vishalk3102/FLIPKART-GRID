@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
           <div class='mt-4 px-5 pb-5'>
             <div href='#'>
               <h5 class='text-xl tracking-tight text-slate-900'>
-                Nike Air MX Super 2500 - Red
+                {product.name}
               </h5>
             </div>
             <div class='mt-2 mb-5 flex items-center justify-between'>

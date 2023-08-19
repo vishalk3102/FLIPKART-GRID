@@ -24,7 +24,7 @@ const ProductDetails = () => {
       dispatch(clearErrors())
     }
     dispatch(getProductDetails(params.id))
-  }, [dispatch, params.id])
+  }, [dispatch, error, params.id])
   return (
     <>
       <section class='py-8 sm:py-8'>
@@ -81,7 +81,7 @@ const ProductDetails = () => {
 
             <div class='lg:col-span-2 lg:row-span-2 lg:row-end-2'>
               <h1 class='sm: text-2xl font-bold text-gray-900 sm:text-3xl'>
-                Afro-Brazillian Coffee
+                {product.name}
               </h1>
 
               <div class='mt-5 flex items-center'>
