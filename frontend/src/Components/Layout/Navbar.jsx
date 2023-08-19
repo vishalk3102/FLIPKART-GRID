@@ -14,7 +14,11 @@ const Navbar = ({ isAuthenticated = false }) => {
   const submitHandler = e => {
     e.preventDefault()
     console.log(keyword)
-    navigate(`/${keyword}`)
+    if (keyword.trim()) {
+      navigate(`/products`)
+    } else {
+      navigate(`/products/${keyword}`)
+    }
   }
   return (
     <>

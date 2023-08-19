@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import img from '../../Assets/productimage-1.jpg'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   return (
     <>
-      {/* <Link className='productCard' to={`/product/${product._id}`}> */}
-      <Link className='productCard' to={`/product/64ddf3967e6629dea533dc04`}>
+      <Link className='productCard' to={`/product/${product._id}`}>
+        {/* <Link className='productCard' to={`/product/64ddf3967e6629dea533dc04`}> */}
         <div class='relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md hover:cursor-pointer'>
           <div
             class='relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl'

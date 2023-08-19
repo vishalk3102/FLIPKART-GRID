@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import productImage from '../../Assets/productimage-1.jpg'
 import FeaturedProduct from './FeaturedProduct'
 import LikedProduct from './LikedProduct'
+import {
+  clearErrors,
+  getProductDetails
+} from '../../redux/actions/productAction'
+import toast from 'react-hot-toast'
 
 const ProductDetails = () => {
+  const params = useParams()
+  const dispatch = useDispatch()
+  const { product, loading, error } = useSelector(state => state.productDetails)
+
+  // const [productId, setProductId] = useState(params.id)
+  // const [userId, setUserId] = useState(user.id)
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch(clearErrors())
+    }
+    dispatch(getProductDetails(params.id))
+  }, [dispatch, params.id])
   return (
     <>
       <section class='py-8 sm:py-8'>
@@ -126,89 +147,22 @@ const ProductDetails = () => {
                 </p>
               </div>
 
-              <h2 class='mt-8 text-base text-gray-900'>Coffee Type</h2>
-              <div class='mt-3 flex select-none flex-wrap items-center gap-1'>
-                <label class=''>
-                  <input
-                    type='radio'
-                    name='type'
-                    value='Powder'
-                    class='peer sr-only'
-                    checked
-                  />
-                  <p class='peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold'>
-                    Powder
-                  </p>
-                </label>
-                <label class=''>
-                  <input
-                    type='radio'
-                    name='type'
-                    value='Whole Bean'
-                    class='peer sr-only'
-                  />
-                  <p class='peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold'>
-                    Whole Bean
-                  </p>
-                </label>
-                <label class=''>
-                  <input
-                    type='radio'
-                    name='type'
-                    value='Groud'
-                    class='peer sr-only'
-                  />
-                  <p class='peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold'>
-                    Groud
-                  </p>
-                </label>
-              </div>
-
-              <h2 class='mt-8 text-base text-gray-900'>Choose subscription</h2>
-              <div class='mt-3 flex select-none flex-wrap items-center gap-1'>
-                <label class=''>
-                  <input
-                    type='radio'
-                    name='subscription'
-                    value='4 Months'
-                    class='peer sr-only'
-                  />
-                  <p class='peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold'>
-                    4 Months
-                  </p>
-                  <span class='mt-1 block text-center text-xs'>$80/mo</span>
-                </label>
-                <label class=''>
-                  <input
-                    type='radio'
-                    name='subscription'
-                    value='8 Months'
-                    class='peer sr-only'
-                    checked
-                  />
-                  <p class='peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold'>
-                    8 Months
-                  </p>
-                  <span class='mt-1 block text-center text-xs'>$60/mo</span>
-                </label>
-                <label class=''>
-                  <input
-                    type='radio'
-                    name='subscription'
-                    value='12 Months'
-                    class='peer sr-only'
-                  />
-                  <p class='peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold'>
-                    12 Months
-                  </p>
-                  <span class='mt-1 block text-center text-xs'>$40/mo</span>
-                </label>
+              <h2 class='mt-8 text-base text-gray-900 font-bold'>
+                {' '}
+                Description
+              </h2>
+              <div class='mt-1 flex select-none flex-wrap items-center gap-1'>
+                <p className=''>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+                  distinctio vero nisi! Labore est sed autem officiis dicta,
+                  ducimus nulla doloremque soluta commodi illum odit ratione
+                  obcaecati maxime optio nesciunt?
+                </p>
               </div>
 
               <div class='mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0'>
                 <div class='flex items-end'>
-                  <h1 class='text-3xl font-bold'>$60.50</h1>
-                  <span class='text-base'>/month</span>
+                  <h1 class='text-3xl font-bold'>Rs 60.50</h1>
                 </div>
 
                 <button
@@ -274,7 +228,7 @@ const ProductDetails = () => {
               </ul>
             </div>
 
-            {/*  <div class='lg:col-span-3'>
+            {/*   <div class='lg:col-span-3'>
               <div class='border-b border-gray-300'>
                 <nav class='flex gap-4'>
                   <div

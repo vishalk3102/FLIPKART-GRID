@@ -25,7 +25,7 @@ const Login = () => {
   }
   useEffect(() => {
     if (error) {
-      alert.error(error)
+      toast.error(error)
       dispatch(clearErrors())
     }
 

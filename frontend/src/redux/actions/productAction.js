@@ -11,28 +11,13 @@ import {
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_SUCCESS,
   NEW_PRODUCT_FAIL,
-  UPDATE_PRODUCT_REQUEST,
-  UPDATE_PRODUCT_SUCCESS,
-  UPDATE_PRODUCT_FAIL,
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_SUCCESS,
-  NEW_REVIEW_REQUEST,
-  NEW_REVIEW_SUCCESS,
-  NEW_REVIEW_FAIL,
-  ALL_REVIEW_REQUEST,
-  ALL_REVIEW_SUCCESS,
-  ALL_REVIEW_FAIL,
-  DELETE_REVIEW_REQUEST,
-  DELETE_REVIEW_SUCCESS,
-  DELETE_REVIEW_FAIL,
-  CLEAR_ERRORS,
-  UPDATE_INTERACTION_SUCCESS,
-  UPDATE_INTERACTION_REQUEST,
-  UPDATE_INTERACTION_FAIL
+  CLEAR_ERRORS
 } from '../../constants/productConstants'
 
 // Get All Products
@@ -42,9 +27,8 @@ export const getProduct =
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST })
 
-      // let link = `${server}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
-
-      /*   if (category) {
+      /*   let link = `${server}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
+      if (category) {
         link = `${server}/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
       } */
 

@@ -5,34 +5,36 @@ import { clearErrors, getProduct } from '../../redux/actions/productAction'
 import ProductCard from '../Home/ProductCard'
 import { productListData } from '../data'
 import { Slider } from '@material-tailwind/react'
+import { toast } from 'react-hot-toast'
 
 const categories = [
-  'Laptop',
-  'Footwear',
-  'Bottom',
-  'Tops',
-  'Attire',
-  'Camera',
-  'SmartPhones'
+  'Apparel',
+  'Jewelry',
+  'Luggage',
+  'Watches',
+  'Shoes',
+  'Beauty',
+  'Gift Card'
 ]
 
-const Products = () => {
+const Products = ({ match }) => {
   const params = useParams()
   const dispatch = useDispatch()
-  const { loading, error, products } = useSelector(state => state.products)
 
   const [price, setPrice] = useState([0, 25000])
   const [category, setCategory] = useState('')
   const [ratings, setRatings] = useState(0)
 
-  // const {
-  //   products,
-  //   loading,
-  //   error,
-  //   productsCount,
-  //   resultPerPage,
-  //   filteredProductsCount
-  // } = useSelector(state => state.products)
+  // const { loading, error, products } = useSelector(state => state.products)
+
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount
+  } = useSelector(state => state.products)
 
   const keyword = params.keyword
 
@@ -43,12 +45,12 @@ const Products = () => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error)
+      toast.error(error)
       dispatch(clearErrors())
     }
     // dispatch(getProduct())
     dispatch(getProduct(keyword))
-  }, [dispatch, error, keyword])
+  }, [category, dispatch, error, keyword])
 
   return (
     <>
