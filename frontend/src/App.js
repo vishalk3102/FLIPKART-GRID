@@ -8,11 +8,13 @@ import Register from './Components/User/Register'
 import Home from './Components/Home/Home'
 import Products from './Components/Product/Products'
 import ProductDetails from './Components/Product/ProductDetails'
+import { useSelector } from 'react-redux'
 
 const App = () => {
+  const { loading, user, isAuthenticated } = useSelector(state => state.user)
   return (
     <>
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />

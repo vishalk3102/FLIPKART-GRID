@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearErrors, login, register } from '../../redux/actions/userAction'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Login = () => {
   const dispatch = useDispatch()
   const { error, loading, isAuthenticated } = useSelector(state => state.user)
-
+  const navigate = useNavigate()
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const [user, setUser] = useState({
@@ -22,6 +23,17 @@ const Login = () => {
     console.log(loginPassword)
     dispatch(login(loginEmail, loginPassword))
   }
+  useEffect(() => {
+    if (error) {
+      alert.error(error)
+      dispatch(clearErrors())
+    }
+
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [dispatch, error, isAuthenticated, navigate])
+
   return (
     <>
       <section class='bg-gray-100 '>

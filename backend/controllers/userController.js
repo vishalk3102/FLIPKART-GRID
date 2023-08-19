@@ -114,39 +114,51 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   })
 })
 exports.updateInteractions = catchAsyncErrors(async (req, res, next) => {
-  let productId = req.body.productId
+  // let productId = req.body.productId
   // let userId = req.body.userId
-  let userId = req.params.id
+  // let userId = req.params.id
   // let interaction = {
   //   productId: req.body.productId
   // }
-  console.log(req.body.userId)
-  console.log(userId)
-  console.log(req.body.productId)
+  // console.log(req.body.userId)
+  // console.log(userId)
+  // console.log(req.body.productId)
+  // console.log(req.params.id)
+  // console.log(req.body.productId)
+
+  // const user = await User.findById(req.params.id)
+
+  /*  user.interactions.push({
+    productId
+  }) */
+
+  // console.log(user)
 
   // let query = { _id: req.params.userId }
   // let update = { $push: { interactions: { productId: 'AJKSHDLSL' } } }
-  // // const user = await User.findByIdAndUpdate(req.params.userId, newUserData, {
-  // //   new: true,
-  // //   runValidators: true,
-  // //   useFindAndModify: false
-  // // })
+  // const user = await User.findByIdAndUpdate(req.params.id, update, {
+  //   new: true,
+  //   runValidators: true,
+  //   useFindAndModify: false
+  // })
 
   // const updatedUser = await User.findByIdAndUpdate(
   //   { _id: req.params.id },
   //   { $push: { interactions: { productId } } },
   //   { new: true }
   // )
-  const updatedUser = await User.updateOne(
-    {
-      role: 'admin'
-    },
-    { $push: { interactions: { productId } } }
-  )
+
+  // let userId = req.params.id
+  let userId = `64dfa9f3e23a61884ac99b96`
+  let product = `AJKSHDLSL`
+  let update = { $push: { interactions: { productId: product } } }
+  const user = await User.findByIdAndUpdate(userId, update)
 
   // await User.findOneAndUpdate(userId, update)
   // const user = await User.findById({ _id: userId })
-  console.log(updatedUser)
+  // console.log(updatedUser)
+
+  // await user.save()
   res.status(200).json({
     success: true,
     // updatedUser,

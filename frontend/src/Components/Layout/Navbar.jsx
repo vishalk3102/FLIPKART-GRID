@@ -5,8 +5,8 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { FaUser } from 'react-icons/fa'
 import { FiLogIn } from 'react-icons/fi'
 
-const Nav = () => {
-  const isAuthenticated = false
+const Navbar = ({ isAuthenticated = false }) => {
+  // const isAuthenticated = false
 
   const [keyword, setKeyword] = useState('')
   const navigate = useNavigate()
@@ -70,4 +70,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default Navbar
