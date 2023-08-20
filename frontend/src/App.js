@@ -10,6 +10,8 @@ import Products from './Components/Product/Products'
 import ProductDetails from './Components/Product/ProductDetails'
 import { useSelector } from 'react-redux'
 import Test from './Components/test'
+import toast, { Toaster } from 'react-hot-toast'
+import FeaturedProduct from './Components/Product/FeaturedProduct'
 
 const App = () => {
   const { loading, user, isAuthenticated } = useSelector(state => state.user)
@@ -26,9 +28,11 @@ const App = () => {
         <Route exact path='/product/:id' element={<ProductDetails />} />
 
         <Route exact path='/recommend' element={<Test />} />
+        <Route exact path='/recommend/products' element={<FeaturedProduct />} />
 
         {/* <Route exact path='/product/:keyword' element={<ProductList />} /> */}
       </Routes>
+      <Toaster />
     </>
   )
 }

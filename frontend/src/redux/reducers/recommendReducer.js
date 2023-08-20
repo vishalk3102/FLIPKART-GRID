@@ -2,6 +2,9 @@ import {
   RECOMMEND_REQUEST,
   RECOMMEND_SUCCESS,
   RECOMMEND_FAIL,
+  RECOMMEND_PRODUCT_REQUEST,
+  RECOMMEND_PRODUCT_SUCCESS,
+  RECOMMEND_PRODUCT_FAIL,
   CLEAR_ERRORS
 } from '../../constants/recommendConstants'
 
@@ -30,6 +33,34 @@ export const recommendReducer = (state = {}, action) => {
       }
 
     case RECOMMEND_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null
+      }
+
+    default:
+      return state
+  }
+}
+export const recommendProductReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case RECOMMEND_PRODUCT_REQUEST:
+      return {
+        loading: true,
+        products: []
+      }
+    case RECOMMEND_PRODUCT_SUCCESS:
+      return {
+        loading: false,
+        productIds: action.payload
+      }
+
+    case RECOMMEND_PRODUCT_FAIL:
       return {
         loading: false,
         error: action.payload

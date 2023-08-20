@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getRecommend } from '../redux/actions/recommendAction'
+import {
+  getRecommend,
+  getRecommendProducts
+} from '../redux/actions/recommendAction'
 import ProductCard from '../Components/Home/ProductCard'
 
 const Test = () => {
   const dispatch = useDispatch()
   const { loading, products } = useSelector(state => state.recommend)
 
+  const [flag, setFlag] = useState(false)
   useEffect(() => {
+    // const interaction = ['B01DXHX81O', 'B01B3Q4Q0O']
     const interaction = [
       'B019MDXIXG',
       'B01ADDSL9U',
@@ -16,7 +21,10 @@ const Test = () => {
       'B01FWRXN0Y'
     ]
     dispatch(getRecommend(interaction))
+    // dispatch(getRecommendProducts(products))
+    // }
   }, [dispatch])
+
   return (
     <>
       <h1>jsdhfcsoip</h1>

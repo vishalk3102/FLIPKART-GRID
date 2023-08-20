@@ -49,7 +49,7 @@ def getRecommend():
     requestedData1  = json.loads(requestedData2)
     data_csv_path = "./Dataset/Apparel.csv"
     featureModel = "../Models/recommender-apparal.ckpt"
-    ratingModel = load_model('../Models/recommender-apparal.ckpt')
+    # ratingModel = load_model('../Models/recommender-apparal.ckpt')
     data = pd.read_csv(data_csv_path)
     data, mapping, inverse_mapping = map_column(data, col_name="product_id")
     model = Recommender(
@@ -73,7 +73,7 @@ def getRecommend():
    
     # response = top_products
     response = top_products
-    return jsonify({"products":response})
+    return jsonify({"productIds":response})
   
         
 

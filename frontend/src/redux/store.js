@@ -4,14 +4,18 @@ import {
   productsReducer
 } from './reducers/productReducer'
 import { userReducer } from './reducers/userReducer'
-import { recommendReducer } from './reducers/recommendReducer'
+import {
+  recommendProductReducer,
+  recommendReducer
+} from './reducers/recommendReducer'
 
 const store = configureStore({
   reducer: {
     products: productsReducer,
     productDetails: productDetailsReducer,
     user: userReducer,
-    recommend: recommendReducer
+    recommend: recommendReducer,
+    recommendProducts: recommendProductReducer
   }
 })
 
