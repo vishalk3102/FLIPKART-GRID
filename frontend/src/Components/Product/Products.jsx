@@ -25,16 +25,7 @@ const Products = ({ match }) => {
   const [category, setCategory] = useState('')
   const [ratings, setRatings] = useState(0)
 
-  // const { loading, error, products } = useSelector(state => state.products)
-
-  const {
-    products,
-    loading,
-    error,
-    productsCount,
-    resultPerPage,
-    filteredProductsCount
-  } = useSelector(state => state.products)
+  const { loading, error, products } = useSelector(state => state.products)
 
   const keyword = params.keyword
 
@@ -42,6 +33,11 @@ const Products = ({ match }) => {
     setPrice(newPrice)
     console.log(price)
   }
+
+  const groupedProducts = categories.reduce((groups, category) => {
+    groups[category] = products.filter(product => product.category === category)
+    return groups
+  }, {})
 
   useEffect(() => {
     if (error) {
@@ -54,7 +50,7 @@ const Products = ({ match }) => {
 
   return (
     <>
-      <section id='products' className='h-full w-full'>
+      <section id='products' className='h-full w-full my-20'>
         <div className='grid grid-cols-12'>
           <div className='col-span-2 h-[100%] w-[100%]'>
             <div className='flex flex-col justify-center items-center py-10'>
@@ -101,15 +97,33 @@ const Products = ({ match }) => {
             </div>
           </div>
           <div className='col-span-10 h-[100%] w-[100%]'>
-            <div className='flex  '>
+            {/*   <div className='grid grid-cols-3  '>
               {products &&
                 products.map(product => (
-                  <ProductCard key={product._id} product={product} />
+                  <div className='col-span-1'>
+                    <ProductCard key={product._id} product={product} />
+                  </div>
                 ))}
-              {/*   {productListData.map(product => (
-                <ProductCard key={product._id} product={product} />
-              ))} */}
-            </div>
+            </div> */}
+
+            {categories.map(category => {
+              return (
+                <>
+                  <div className='ml-5 my-5'>
+                    <h2 className='text-[1.4rem] font-bold capitalize p-2'>
+                      {category}
+                    </h2>
+                    <div className='grid grid-cols-3  '>
+                      {groupedProducts[category].map(product => (
+                        <div className='col-span-1'>
+                          <ProductCard key={product._id} product={product} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )
+            })}
           </div>
         </div>
       </section>

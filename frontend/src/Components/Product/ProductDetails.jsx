@@ -49,7 +49,7 @@ const ProductDetails = () => {
                       class='flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center'
                     >
                       <img
-                        class='h-full w-full object-cover'
+                        class='h-full w-full object-cover '
                         src={productImage}
                         alt=''
                       />
@@ -80,7 +80,7 @@ const ProductDetails = () => {
             </div>
 
             <div class='lg:col-span-2 lg:row-span-2 lg:row-end-2'>
-              <h1 class='sm: text-2xl font-bold text-gray-900 sm:text-3xl'>
+              <h1 class='sm: text-2xl font-bold text-gray-900 sm:text-3xl capitalize'>
                 {product.name}
               </h1>
 
@@ -162,7 +162,7 @@ const ProductDetails = () => {
 
               <div class='mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0'>
                 <div class='flex items-end'>
-                  <h1 class='text-3xl font-bold'>Rs 60.50</h1>
+                  <h1 class='text-3xl font-bold'>₹ 60.50</h1>
                 </div>
 
                 <button

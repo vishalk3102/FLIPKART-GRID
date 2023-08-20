@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/css'
 import sliderData from '../../Data/sliderData'
+import Search from './Search'
 
 const Slider = () => {
   return (
@@ -24,7 +25,7 @@ const Slider = () => {
           {sliderData.map(val => {
             return (
               <SwiperSlide key={val.id}>
-                <div className='w-[100%] h-[450px]'>
+                <div className='w-[100%] h-[550px]'>
                   <img
                     src={val.url}
                     alt=''
@@ -38,6 +39,9 @@ const Slider = () => {
             )
           })}
         </Swiper>
+        <div className='max-w-[1200px] mx-auto'>
+          <Search />
+        </div>
       </section>
     </>
   )

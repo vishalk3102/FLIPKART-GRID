@@ -26,10 +26,7 @@ const Products = ({ match }) => {
     <>
       {loading === false ? (
         <div className='w-full h-full my-5'>
-          <div
-            className='max-w-[1000px] w-full h-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'
-            // onClick={handleClick}
-          >
+          <div className='max-w-[1200px] w-full h-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
             {products &&
               products.map(product => (
                 <ProductCard key={product._id} product={product} />

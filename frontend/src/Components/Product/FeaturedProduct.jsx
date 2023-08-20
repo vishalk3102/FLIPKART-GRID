@@ -24,7 +24,7 @@ const FeaturedProduct = () => {
     <>
       <section className='h-full w-full my-10'>
         <div className='w-[100%] max-w-[1200px] mx-auto'>
-          <h3 className='font-bold text-[1.4rem] mb-4'>Featured Product</h3>
+          <h3 className='font-bold text-[1.4rem] '>Featured Product</h3>
 
           <div className='grid grid-cols-3 gap-5'>
             {products &&

@@ -5,8 +5,10 @@ import Slider from './Slider'
 const Home = () => {
   return (
     <>
-      <Slider />
-      <Products />
+      <section className='bg-gray-50'>
+        <Slider />
+        <Products />
+      </section>
     </>
   )
 }
