@@ -1,14 +1,22 @@
 import {
-  UPDATE_INTERACTION_REQUEST,
-  UPDATE_INTERACTION_SUCCESS,
-  UPDATE_INTERACTION_FAIL,
   RECOMMEND_REQUEST,
   RECOMMEND_SUCCESS,
   RECOMMEND_FAIL,
   CLEAR_ERRORS
 } from '../../constants/recommendConstants'
 
-export const recommendReducer = (state = {}, action) => {
+const initialState = {
+  interaction: [
+    'B019MDXIXG',
+    'B01ADDSL9U',
+    'B01B3Q4Q0O',
+    'B01DXHX81O',
+    'B01FWRXN0Y'
+  ],
+  message: ''
+}
+
+export const recommendReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECOMMEND_REQUEST:
       return {
