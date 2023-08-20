@@ -11,14 +11,15 @@ import {
 } from '../../constants/recommendConstants'
 
 // const server = 'http://localhost:5000'
-export const getRecommend = interaction => async dispatch => {
+export const getRecommend = (interaction, category) => async dispatch => {
   try {
     dispatch({ type: RECOMMEND_REQUEST })
 
     // const { data } = await axios.get(`${server}/recommend`)
     // const { data } = await axios.get(`http://localhost:5000/recommend`)
     const { data } = await axios.post(`http://localhost:5000/recommend`, {
-      interaction
+      interaction,
+      category
     })
     // await axios.get(`${server}/recommend`)
 
@@ -34,27 +35,25 @@ export const getRecommend = interaction => async dispatch => {
   }
 }
 
-export const getRecommendProducts =
-  (productIds, category) => async dispatch => {
-    try {
-      dispatch({ type: RECOMMEND_PRODUCT_REQUEST })
+export const getRecommendProducts = productIds => async dispatch => {
+  try {
+    dispatch({ type: RECOMMEND_PRODUCT_REQUEST })
 
-      // const { data } = await axios.get(`${server}/recommend`)
-      // const { data } = await axios.get(`http://localhost:5000/recommend`)
-      const { data } = await axios.post(`${server}/recommend`, {
-        ids: productIds,
-        category
-      })
-      // await axios.get(`${server}/recommend`)
+    // const { data } = await axios.get(`${server}/recommend`)
+    // const { data } = await axios.get(`http://localhost:5000/recommend`)
+    const { data } = await axios.post(`${server}/recommend`, {
+      ids: productIds
+    })
+    // await axios.get(`${server}/recommend`)
 
-      dispatch({
-        type: RECOMMEND_PRODUCT_SUCCESS,
-        payload: data.products
-      })
-    } catch (error) {
-      dispatch({
-        type: RECOMMEND_PRODUCT_FAIL,
-        payload: error.response.data.message
-      })
-    }
+    dispatch({
+      type: RECOMMEND_PRODUCT_SUCCESS,
+      payload: data.products
+    })
+  } catch (error) {
+    dispatch({
+      type: RECOMMEND_PRODUCT_FAIL,
+      payload: error.response.data.message
+    })
   }
+}
