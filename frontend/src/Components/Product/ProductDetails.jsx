@@ -10,6 +10,54 @@ import {
 } from '../../redux/actions/productAction'
 import toast from 'react-hot-toast'
 
+import ap1 from '../../Assets/apparel/ap-img-1.jpg'
+import ap2 from '../../Assets/apparel/ap-img-2.jpg'
+import ap3 from '../../Assets/apparel/ap-img-3.jpeg'
+import sh1 from '../../Assets/shoes/sh-img-1.jpg'
+import sh2 from '../../Assets/shoes/sh-img-2.jpg'
+import sh3 from '../../Assets/shoes/sh-img-3.jpg'
+import wh1 from '../../Assets/watches/wh-img-1.jpg'
+import wh2 from '../../Assets/watches/wh-img-2.jpg'
+import wh3 from '../../Assets/watches/wh-img-3.jpg'
+import jw1 from '../../Assets/jewellery/jw-img-1.jpg'
+import jw2 from '../../Assets/jewellery/jw-img-2.jpg'
+import jw3 from '../../Assets/jewellery/jw-img-3.jpg'
+import b1 from '../../Assets/beauty/b-img-1.jpg'
+import b2 from '../../Assets/beauty/b-img-2.jpg'
+import b3 from '../../Assets/beauty/b-img-3.jpg'
+import l1 from '../../Assets/luggage/l-img-1.jpg'
+import l2 from '../../Assets/luggage/l-img-2.jpg'
+import l3 from '../../Assets/luggage/l-img-3.jpg'
+import gc1 from '../../Assets/giftcard/gc-img-1.jpg'
+import gc2 from '../../Assets/giftcard/gc-img-2.jpg'
+import gc3 from '../../Assets/giftcard/gc-img-3.jpg'
+import { getRecommend } from '../../redux/actions/recommendAction'
+// import { ap1 } from '../Data/imgData'
+
+const imgData = [
+  ap1,
+  ap2,
+  ap3,
+  sh1,
+  sh2,
+  sh3,
+  wh1,
+  wh2,
+  wh3,
+  jw1,
+  jw2,
+  jw3,
+  b1,
+  b2,
+  b3,
+  l1,
+  l2,
+  l3,
+  gc1,
+  gc2,
+  gc3
+]
+
 const ProductDetails = () => {
   const params = useParams()
   const dispatch = useDispatch()
@@ -23,7 +71,15 @@ const ProductDetails = () => {
       toast.error(error)
       dispatch(clearErrors())
     }
+    const interaction = [
+      'B019MDXIXG',
+      'B01ADDSL9U',
+      'B01B3Q4Q0O',
+      'B01DXHX81O',
+      'B01FWRXN0Y'
+    ]
     dispatch(getProductDetails(params.id))
+    dispatch(getRecommend(interaction))
   }, [dispatch, error, params.id])
   return (
     <>
@@ -36,7 +92,7 @@ const ProductDetails = () => {
                   <div class='max-w-xl overflow-hidden rounded-lg'>
                     <img
                       class='h-full w-full max-w-full object-cover'
-                      src={productImage}
+                      src={`${imgData[product.index]}`}
                       alt=''
                     />
                   </div>
@@ -50,7 +106,7 @@ const ProductDetails = () => {
                     >
                       <img
                         class='h-full w-full object-cover '
-                        src={productImage}
+                        src={`${imgData[product.index]}`}
                         alt=''
                       />
                     </button>
@@ -60,7 +116,7 @@ const ProductDetails = () => {
                     >
                       <img
                         class='h-full w-full object-cover'
-                        src={productImage}
+                        src={`${imgData[product.index]}`}
                         alt=''
                       />
                     </button>
@@ -70,7 +126,7 @@ const ProductDetails = () => {
                     >
                       <img
                         class='h-full w-full object-cover'
-                        src={productImage}
+                        src={`${imgData[product.index]}`}
                         alt=''
                       />
                     </button>
@@ -269,11 +325,11 @@ const ProductDetails = () => {
             </div> */}
           </div>
         </div>
-        <div className=''>
-          <FeaturedProduct />
-          <LikedProduct />
-        </div>
       </section>
+      <div className=''>
+        <FeaturedProduct />
+        <LikedProduct />
+      </div>
     </>
   )
 }

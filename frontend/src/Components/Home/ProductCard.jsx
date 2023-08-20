@@ -14,6 +14,9 @@ import wh3 from '../../Assets/watches/wh-img-3.jpg'
 import jw1 from '../../Assets/jewellery/jw-img-1.jpg'
 import jw2 from '../../Assets/jewellery/jw-img-2.jpg'
 import jw3 from '../../Assets/jewellery/jw-img-3.jpg'
+import b1 from '../../Assets/beauty/b-img-1.jpg'
+import b2 from '../../Assets/beauty/b-img-2.jpg'
+import b3 from '../../Assets/beauty/b-img-3.jpg'
 import l1 from '../../Assets/luggage/l-img-1.jpg'
 import l2 from '../../Assets/luggage/l-img-2.jpg'
 import l3 from '../../Assets/luggage/l-img-3.jpg'
@@ -32,6 +35,12 @@ const imgData = [
   wh1,
   wh2,
   wh3,
+  jw1,
+  jw2,
+  jw3,
+  b1,
+  b2,
+  b3,
   l1,
   l2,
   l3,
