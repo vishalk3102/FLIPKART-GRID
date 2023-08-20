@@ -11,11 +11,10 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const [user, setUser] = useState({
-    name: '',
     email: '',
     password: ''
   })
-  const { name, email, password } = user
+  const { email, password } = user
 
   const loginSubmit = e => {
     e.preventDefault()

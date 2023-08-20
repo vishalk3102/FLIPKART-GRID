@@ -8,6 +8,10 @@ import {
   clearErrors,
   getProductDetails
 } from '../../redux/actions/productAction'
+import {
+  getRecommend,
+  getRecommendProducts
+} from '../../redux/actions/recommendAction'
 import toast from 'react-hot-toast'
 
 import ap1 from '../../Assets/apparel/ap-img-1.jpg'
@@ -16,22 +20,27 @@ import ap3 from '../../Assets/apparel/ap-img-3.jpeg'
 import sh1 from '../../Assets/shoes/sh-img-1.jpg'
 import sh2 from '../../Assets/shoes/sh-img-2.jpg'
 import sh3 from '../../Assets/shoes/sh-img-3.jpg'
+import sh4 from '../../Assets/shoes/sh-img-4.jpg'
 import wh1 from '../../Assets/watches/wh-img-1.jpg'
 import wh2 from '../../Assets/watches/wh-img-2.jpg'
 import wh3 from '../../Assets/watches/wh-img-3.jpg'
 import jw1 from '../../Assets/jewellery/jw-img-1.jpg'
 import jw2 from '../../Assets/jewellery/jw-img-2.jpg'
 import jw3 from '../../Assets/jewellery/jw-img-3.jpg'
+import jw4 from '../../Assets/jewellery/jw-img-4.jpg'
+import jw5 from '../../Assets/jewellery/jw-img-5.jpg'
+import jw6 from '../../Assets/jewellery/jw-img-6.jpg'
 import b1 from '../../Assets/beauty/b-img-1.jpg'
 import b2 from '../../Assets/beauty/b-img-2.jpg'
 import b3 from '../../Assets/beauty/b-img-3.jpg'
+import b4 from '../../Assets/beauty/b-img-4.jpg'
 import l1 from '../../Assets/luggage/l-img-1.jpg'
 import l2 from '../../Assets/luggage/l-img-2.jpg'
 import l3 from '../../Assets/luggage/l-img-3.jpg'
 import gc1 from '../../Assets/giftcard/gc-img-1.jpg'
 import gc2 from '../../Assets/giftcard/gc-img-2.jpg'
 import gc3 from '../../Assets/giftcard/gc-img-3.jpg'
-import { getRecommend } from '../../redux/actions/recommendAction'
+import gc4 from '../../Assets/giftcard/gc-img-4.jpg'
 // import { ap1 } from '../Data/imgData'
 
 const imgData = [
@@ -55,7 +64,13 @@ const imgData = [
   l3,
   gc1,
   gc2,
-  gc3
+  gc3,
+  jw4,
+  jw5,
+  jw6,
+  b4,
+  sh4,
+  gc4
 ]
 
 const ProductDetails = () => {
@@ -71,16 +86,18 @@ const ProductDetails = () => {
       toast.error(error)
       dispatch(clearErrors())
     }
-    const interaction = [
-      'B019MDXIXG',
-      'B01ADDSL9U',
-      'B01B3Q4Q0O',
-      'B01DXHX81O',
-      'B01FWRXN0Y'
+    const interaction = ['B00M2L6KFY', 'B00JWXFDMG', 'B00W5T1H9W']
+    const productIds = [
+      'B00GU82FQS',
+      'B004POJT5O',
+      'B000NXGR9M',
+      'B00MN6TAA0',
+      'B00LE5Y100'
     ]
     dispatch(getProductDetails(params.id))
-    dispatch(getRecommend(interaction))
-  }, [dispatch, error, params.id])
+    dispatch(getRecommend(interaction, product.product_category))
+    // dispatch(getRecommendProducts(productIds))
+  }, [dispatch, error, params.id, product.product_category])
   return (
     <>
       <section class='py-8 sm:py-8'>
@@ -327,8 +344,8 @@ const ProductDetails = () => {
         </div>
       </section>
       <div className=''>
-        <FeaturedProduct />
         <LikedProduct />
+        <FeaturedProduct />
       </div>
     </>
   )

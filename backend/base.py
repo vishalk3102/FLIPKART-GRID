@@ -47,8 +47,17 @@ def getRecommend():
     requestedData = request.json['interaction']
     requestedData2 = json.dumps(requestedData)
     requestedData1  = json.loads(requestedData2)
-    data_csv_path = "./Dataset/Apparel.csv"
-    featureModel = "../Models/recommender-apparal.ckpt"
+    data = request.json
+    category = data.get('category')
+
+ 
+
+    # data_csv_path = "./Dataset/Apparel.csv"
+    # data_csv_path = "./Dataset/Augmented_Jewelry.csv"
+    data_csv_path = "./Dataset/Dataset.csv"
+    # featureModel = "../Models/recommender-apparal.ckpt"
+    # featureModel = "../Models/recommender-jewellery-v1.ckpt"
+    featureModel = "../Models/recommender-main.ckpt"
     # ratingModel = load_model('../Models/recommender-apparal.ckpt')
     data = pd.read_csv(data_csv_path)
     data, mapping, inverse_mapping = map_column(data, col_name="product_id")
@@ -62,17 +71,58 @@ def getRecommend():
     model.load_state_dict(torch.load(featureModel,map_location ='cpu')["state_dict"])
     id2mapid = {a: mapping[b] for a, b in zip(data.product_id.tolist(), data.product_id.tolist()) if b in mapping}
     map2id = {v: k for k, v in id2mapid.items()}
-    list_id_products = ["B01FWRXN0Y",
-                "B01DXHX81O",
-                "B01B3Q4Q0O",
-                "B01ADDSL9U"]
+
 
     # top_products = predictId(list_id_products, model, id2mapid, map2id)
     top_products = predictId(requestedData1, model, id2mapid, map2id)
 
+    # 2nd model
+    model = load_model('../Models/WholeDatasetModel.h5')
+    item_encoder = LabelEncoder()
+    # data['items'] = item_encoder.fit_transform(data['product_id'])
+    items = item_encoder.fit_transform(top_products)
+    # Example user and item data
+    target_user_id = 32158956
+
+    # Assuming data is your DataFrame containing item data
+
+
+
+    # Create and fit the user encoder
+    user_encoder = LabelEncoder()
+    user_encoder.fit([target_user_id])
+
+    # Create a dictionary to map original item IDs to numeric encodings
+    item_mapping = {item: index for index, item in enumerate(items)}
+
+    # Create an inverse mapping to retrieve original item IDs from numeric encodings
+    inverse_item_mapping = {index: item for item, index in item_mapping.items()}
+
+    # Encode the user ID
+    encoded_user_id = user_encoder.transform([target_user_id])[0]
+
+    # Encode all items
+    encoded_item_ids = np.array([item_mapping[item] for item in items])
+
+    # Simulated model predictions (replace this with your actual model)
+    num_users = 1
+    num_items = len(items)
+    model_predictions = np.random.rand(num_users, num_items)
+
+    # Predict ratings for the chosen user and all items
+    user_ids = np.full(num_items, encoded_user_id)
+    predictions = model_predictions[encoded_user_id]
+
+    # Get top N recommendations
+    N = 3 # Number of recommendations you want to provide
+    recommended_item_indices = predictions.argsort()[::-1][:N]
+    decoded_items = item_encoder.inverse_transform(items)
+
+    
    
     # response = top_products
-    response = top_products
+    # response = top_products
+    response = decoded_items.tolist()[:3] 
     return jsonify({"productIds":response})
   
         

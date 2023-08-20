@@ -7,21 +7,40 @@ const Register = () => {
   const dispatch = useDispatch()
   const { error, loading, isAuthenticated } = useSelector(state => state.user)
 
-  const [loginEmail, setLoginEmail] = useState('')
-  const [loginPassword, setLoginPassword] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
+  /*  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  }) */
+
   const [user, setUser] = useState({
     name: '',
     email: '',
     password: ''
   })
+
   const { name, email, password } = user
 
-  const loginSubmit = e => {
-    e.preventDefault()
-    console.log(loginEmail)
-    console.log(loginPassword)
-    dispatch(login(loginEmail, loginPassword))
+  const registerDataChange = e => {
+    console.log(user)
+    setUser({ ...user, [e.target.name]: e.target.value })
   }
+  const registerSubmit = e => {
+    e.preventDefault()
+    const myForm = new FormData()
+    myForm.set('name', name)
+    myForm.set('email', email)
+    myForm.set('password', password)
+    dispatch(register(myForm))
+  }
+  // const registerSubmit = e => {
+  //   e.preventDefault()
+  //   console.log(email)
+  //   console.log(password)
+  //   dispatch(register(email, password))
+  // }
+
   return (
     <>
       <section class='bg-gray-100 '>
@@ -31,7 +50,25 @@ const Register = () => {
               <h1 class='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
                 Create a Account
               </h1>
-              <form class='space-y-4 md:space-y-6' onSubmit={loginSubmit}>
+              <form class='space-y-4 md:space-y-6' onSubmit={registerSubmit}>
+                <div>
+                  <label
+                    for='email'
+                    class='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                  >
+                    Enter Your Name
+                  </label>
+                  <input
+                    type='text'
+                    name='name'
+                    id='name'
+                    class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    placeholder='name@company.com'
+                    required=''
+                    value={name}
+                    onChange={registerDataChange}
+                  />
+                </div>
                 <div>
                   <label
                     for='email'
@@ -46,8 +83,8 @@ const Register = () => {
                     class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                     placeholder='name@company.com'
                     required=''
-                    value={loginEmail}
-                    onChange={e => setLoginEmail(e.target.value)}
+                    value={email}
+                    onChange={registerDataChange}
                   />
                 </div>
                 <div>
@@ -64,8 +101,8 @@ const Register = () => {
                     placeholder='••••••••'
                     class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                     required=''
-                    value={loginPassword}
-                    onChange={e => setLoginPassword(e.target.value)}
+                    value={password}
+                    onChange={registerDataChange}
                   />
                 </div>
                 <button

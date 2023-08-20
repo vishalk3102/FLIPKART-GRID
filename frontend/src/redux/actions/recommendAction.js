@@ -34,25 +34,27 @@ export const getRecommend = interaction => async dispatch => {
   }
 }
 
-export const getRecommendProducts = products => async dispatch => {
-  try {
-    dispatch({ type: RECOMMEND_PRODUCT_REQUEST })
+export const getRecommendProducts =
+  (productIds, category) => async dispatch => {
+    try {
+      dispatch({ type: RECOMMEND_PRODUCT_REQUEST })
 
-    // const { data } = await axios.get(`${server}/recommend`)
-    // const { data } = await axios.get(`http://localhost:5000/recommend`)
-    const { data } = await axios.post(`${server}/recommend/products`, {
-      ids: products
-    })
-    // await axios.get(`${server}/recommend`)
+      // const { data } = await axios.get(`${server}/recommend`)
+      // const { data } = await axios.get(`http://localhost:5000/recommend`)
+      const { data } = await axios.post(`${server}/recommend/products`, {
+        ids: productIds,
+        category
+      })
+      // await axios.get(`${server}/recommend`)
 
-    dispatch({
-      type: RECOMMEND_PRODUCT_SUCCESS,
-      payload: data.products
-    })
-  } catch (error) {
-    dispatch({
-      type: RECOMMEND_PRODUCT_FAIL,
-      payload: error.response.data.message
-    })
+      dispatch({
+        type: RECOMMEND_PRODUCT_SUCCESS,
+        payload: data.products
+      })
+    } catch (error) {
+      dispatch({
+        type: RECOMMEND_PRODUCT_FAIL,
+        payload: error.response.data.message
+      })
+    }
   }
-}
