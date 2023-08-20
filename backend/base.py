@@ -50,7 +50,31 @@ def getRecommend():
     data = request.json
     category = data.get('category')
 
- 
+    if category == 'Apparel':
+        data_csv_path = "./Dataset/Apparel.csv"
+        featureModel = "../Models/recommender-apparal.ckpt"
+    elif category == 'Jewellery':
+        data_csv_path = "./Dataset/Augmented_Jewelry.csv"
+        featureModel = "../Models/recommender-jewellery-v1.ckpt"
+    elif category == 'Luggage':
+        data_csv_path = "./Dataset/Luggage.csv"
+        featureModel = "../Models/recommender-luggage.ckpt"
+    elif category == 'Watches':
+        data_csv_path = "./Dataset/Watches.csv"
+        featureModel = "../Models/recommender-watches.ckpt"
+    elif category == 'Shoes':
+        data_csv_path = "./Dataset/Shoes.csv"
+        featureModel = "../Models/recommender-shoes.ckpt"
+    elif category == 'Beauty':
+        data_csv_path = "./Dataset/Beauty.csv"
+        featureModel = "../Models/recommender-beauty.ckpt"
+    elif category == 'Gift Card':
+        data_csv_path = "./Dataset/GiftCard.csv"
+        featureModel = "../Models/recommender-gift-card.ckpt"
+    else:
+        data_csv_path = "./Dataset/Dataset.csv"
+        featureModel = "../Models/recommender-main.ckpt"
+    
 
     # data_csv_path = "./Dataset/Apparel.csv"
     # data_csv_path = "./Dataset/Augmented_Jewelry.csv"

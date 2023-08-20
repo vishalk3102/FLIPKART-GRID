@@ -41,7 +41,7 @@ export const getRecommendProducts =
 
       // const { data } = await axios.get(`${server}/recommend`)
       // const { data } = await axios.get(`http://localhost:5000/recommend`)
-      const { data } = await axios.post(`${server}/recommend/products`, {
+      const { data } = await axios.post(`${server}/recommend`, {
         ids: productIds,
         category
       })

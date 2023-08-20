@@ -29,7 +29,8 @@ export const recommendReducer = (state = {}, action) => {
     case RECOMMEND_SUCCESS:
       return {
         loading: false,
-        productIds: action.payload
+        productIds: action.payload,
+        flag: true
       }
 
     case RECOMMEND_FAIL:
