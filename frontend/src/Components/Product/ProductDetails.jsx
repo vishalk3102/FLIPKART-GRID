@@ -77,7 +77,9 @@ const ProductDetails = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const { product, loading, error } = useSelector(state => state.productDetails)
-  const { productIds, flag } = useSelector(state => state.recommend)
+  /* const { categoryProductIds, globalProductIds, flag } = useSelector(
+    state => state.recommend
+  ) */
 
   // const [productId, setProductId] = useState(params.id)
   // const [userId, setUserId] = useState(user.id)
@@ -88,19 +90,21 @@ const ProductDetails = () => {
       dispatch(clearErrors())
     }
     const interaction = ['B00M2L6KFY', 'B00JWXFDMG', 'B00W5T1H9W']
-    // const productIds = [
-    //   'B00GU82FQS',
-    //   'B004POJT5O',
-    //   'B000NXGR9M',
-    //   'B00MN6TAA0',
-    //   'B00LE5Y100'
-    // ]
+    const globalProductIds = [
+      'B00GU82FQS',
+      'B004POJT5O',
+      'B000NXGR9M',
+      'B00MN6TAA0',
+      'B00LE5Y100'
+    ]
     dispatch(getProductDetails(params.id))
+    console.log(product.product_category)
     dispatch(getRecommend(interaction, product.product_category))
   }, [dispatch, error, params.id, product.product_category])
-  if (flag === true) {
-    dispatch(getRecommendProducts(productIds))
-  }
+  /*  if (flag === true) {
+    dispatch(getRecommendProducts(globalProductIds))
+    dispatch(getRecommendProducts(categoryProductIds))
+  } */
   return (
     <>
       <section class='py-8 sm:py-8'>
@@ -351,7 +355,7 @@ const ProductDetails = () => {
         )}
       </section>
       <div className=''>
-        <LikedProduct />
+        {/* <LikedProduct /> */}
         <FeaturedProduct />
       </div>
     </>

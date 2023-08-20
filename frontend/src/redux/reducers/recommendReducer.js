@@ -29,7 +29,8 @@ export const recommendReducer = (state = {}, action) => {
     case RECOMMEND_SUCCESS:
       return {
         loading: false,
-        productIds: action.payload,
+        categoryProductIds: action.payload.categoryProductIds,
+        globalProductIds: action.payload.globalProductIds,
         flag: true
       }
 
@@ -59,6 +60,8 @@ export const recommendProductReducer = (state = { products: [] }, action) => {
       return {
         loading: false,
         products: action.payload.products
+        // categoryProducts: action.payload.products,
+        // globalProductIds: action.payload.products
       }
 
     case RECOMMEND_PRODUCT_FAIL:

@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Card from './Card'
-import ProductCard from '../Home/ProductCard'
+import toast from 'react-hot-toast'
+import Loader from '../Layout/Loader'
+import {
+  clearErrors,
+  getProductDetails
+} from '../../redux/actions/productAction'
+import {
+  getRecommend,
+  getRecommendProducts
+} from '../../redux/actions/recommendAction'
+import { useParams } from 'react-router-dom'
 
 const data = [
   {
@@ -39,24 +50,53 @@ const data = [
   }
 ]
 const LikedProduct = () => {
+  const params = useParams()
+  const dispatch = useDispatch()
+  const { product, error } = useSelector(state => state.productDetails)
+  const { productIds, flag } = useSelector(state => state.recommend)
+  const { loading, products } = useSelector(state => state.recommendProducts)
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch(clearErrors())
+    }
+    const interaction = ['B00M2L6KFY', 'B00JWXFDMG', 'B00W5T1H9W']
+    // const productIds = [
+    //   'B00GU82FQS',
+    //   'B004POJT5O',
+    //   'B000NXGR9M',
+    //   'B00MN6TAA0',
+    //   'B00LE5Y100'
+    // ]
+    dispatch(getProductDetails(params.id))
+    dispatch(getRecommend(interaction, product.product_category))
+  }, [dispatch, error, params.id, product.product_category])
+  if (flag === true) {
+    dispatch(getRecommendProducts(productIds))
+  }
   return (
     <>
       <section className='h-full w-full my-10'>
-        <div className='w-[100%] max-w-[1200px] mx-auto'>
-          <h3 className='font-bold text-[1.4rem] '>Product You may Like</h3>
+        {loading === false ? (
+          <div className='w-[100%] max-w-[1200px] mx-auto'>
+            <h3 className='font-bold text-[1.4rem] '>Product You may Like</h3>
 
-          <div className='grid grid-cols-3 gap-5'>
-            {/*   <Card />
+            <div className='grid grid-cols-3 gap-5'>
+              {/*   <Card />
             <Card />
             <Card /> */}
-            {/* <ProductCard /> */}
-            {/* <ProductCard /> */}
-            {/* <ProductCard /> */}
-            {data.map(product => (
-              <Card key={product.key} product={product} />
-            ))}
+              {/* <ProductCard /> */}
+              {/* <ProductCard /> */}
+              {/* <ProductCard /> */}
+              {products &&
+                products.map(product => (
+                  <Card key={product.key} product={product} />
+                ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <Loader />
+        )}
       </section>
     </>
   )
