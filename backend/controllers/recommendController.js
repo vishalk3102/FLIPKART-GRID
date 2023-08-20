@@ -18,7 +18,8 @@ exports.getRecommend = catchAsyncErrors(async (req, res, next) => {
 
 exports.getRecommendedProduct = catchAsyncErrors(async (req, res, next) => {
   const productIds = req.body.ids
-  const products = await Product.find({ productId: { $in: productIds } })
+  const products = await Product.find({ product_id: { $in: productIds } })
+  console.log('Matching products:', products)
 
   if (!products) {
     return next(new ErrorHander('Products not found', 404))

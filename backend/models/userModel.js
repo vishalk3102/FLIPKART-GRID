@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   },
   interactions: [
     {
-      productId: {
+      product_id: {
         type: String
       }
     }

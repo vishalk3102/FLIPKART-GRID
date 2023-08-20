@@ -58,7 +58,7 @@ export const recommendProductReducer = (state = { products: [] }, action) => {
     case RECOMMEND_PRODUCT_SUCCESS:
       return {
         loading: false,
-        products: action.payload
+        products: action.payload.products
       }
 
     case RECOMMEND_PRODUCT_FAIL:
