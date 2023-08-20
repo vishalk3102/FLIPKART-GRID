@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast'
 
 const categories = [
   'Apparel',
-  'Jewelry',
+  'Jewellery',
   'Luggage',
   'Watches',
   'Shoes',
@@ -35,7 +35,9 @@ const Products = ({ match }) => {
   }
 
   const groupedProducts = categories.reduce((groups, category) => {
-    groups[category] = products.filter(product => product.category === category)
+    groups[category] = products.filter(
+      product => product.product_category === category
+    )
     return groups
   }, {})
 

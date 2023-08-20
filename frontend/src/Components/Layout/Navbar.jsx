@@ -31,7 +31,7 @@ const Navbar = ({ isAuthenticated = false }) => {
           <div className='text-[1.8rem] font-bold   p-2  m-2'>
             <Link to='/' className='hover:cursor-pointer'>
               <h5 className='bg-gradient-to-r from-[#feb21a] from-[0%] via-[#fedb28] via-[50%] to-[#feb21a] to-[100%] text-transparent bg-clip-text'>
-                Flipkart
+                Flippy
               </h5>
             </Link>
           </div>

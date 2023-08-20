@@ -81,10 +81,10 @@ const ProductDetails = () => {
 
             <div class='lg:col-span-2 lg:row-span-2 lg:row-end-2'>
               <h1 class='sm: text-2xl font-bold text-gray-900 sm:text-3xl capitalize'>
-                {product.name}
+                {product.product_title}
               </h1>
 
-              <div class='mt-5 flex items-center'>
+              {/* <div class='mt-5 flex items-center'>
                 <div class='flex items-center'>
                   <svg
                     class='block h-4 w-4 align-middle text-yellow-500'
@@ -145,24 +145,19 @@ const ProductDetails = () => {
                 <p class='ml-2 text-sm font-medium text-gray-500'>
                   1,209 Reviews
                 </p>
-              </div>
+              </div> */}
 
               <h2 class='mt-8 text-base text-gray-900 font-bold'>
                 {' '}
                 Description
               </h2>
               <div class='mt-1 flex select-none flex-wrap items-center gap-1'>
-                <p className=''>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-                  distinctio vero nisi! Labore est sed autem officiis dicta,
-                  ducimus nulla doloremque soluta commodi illum odit ratione
-                  obcaecati maxime optio nesciunt?
-                </p>
+                <p className=''>{product.description}</p>
               </div>
 
               <div class='mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0'>
                 <div class='flex items-end'>
-                  <h1 class='text-3xl font-bold'>₹ 60.50</h1>
+                  <h1 class='text-3xl font-bold'>₹ {product.price}</h1>
                 </div>
 
                 <button
