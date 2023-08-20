@@ -7,6 +7,8 @@ import Card from './Card'
 const FeaturedProduct = () => {
   const dispatch = useDispatch()
   // const { loading, products } = useSelector(state => state.recommend)
+  const { loading, products } = useSelector(state => state.recommendProducts)
+
   useEffect(() => {
     const products = ['B01DXHX81O', 'B01B3Q4Q0O']
     // const interaction = [
@@ -25,9 +27,10 @@ const FeaturedProduct = () => {
           <h3 className='font-bold text-[1.4rem] mb-4'>Featured Product</h3>
 
           <div className='grid grid-cols-3 gap-5'>
-            <Card />
-            <Card />
-            <Card />
+            {products &&
+              products.map(product => (
+                <Card key={product._id} product={product} />
+              ))}
           </div>
         </div>
       </section>

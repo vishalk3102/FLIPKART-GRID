@@ -8,9 +8,8 @@ import ProductCard from '../Components/Home/ProductCard'
 
 const Test = () => {
   const dispatch = useDispatch()
-  const { loading, products } = useSelector(state => state.recommend)
+  const { loading, productIds } = useSelector(state => state.recommend)
 
-  const [flag, setFlag] = useState(false)
   useEffect(() => {
     // const interaction = ['B01DXHX81O', 'B01B3Q4Q0O']
     const interaction = [
@@ -29,8 +28,8 @@ const Test = () => {
     <>
       <h1>jsdhfcsoip</h1>
 
-      {products &&
-        products.map(product => (
+      {productIds &&
+        productIds.map(product => (
           <ProductCard key={product._id} product={product} />
         ))}
     </>
