@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getRecommend } from '../redux/actions/recommendAction'
+import ProductCard from '../Components/Home/ProductCard'
 
 const Test = () => {
   const dispatch = useDispatch()
+  const { loading, products } = useSelector(state => state.recommend)
 
   useEffect(() => {
     const interaction = [
@@ -17,7 +19,12 @@ const Test = () => {
   }, [dispatch])
   return (
     <>
-      <h1>hello</h1>
+      <h1>jsdhfcsoip</h1>
+
+      {products &&
+        products.map(product => (
+          <ProductCard key={product._id} product={product} />
+        ))}
     </>
   )
 }

@@ -21,7 +21,7 @@ export const getRecommend = interaction => async dispatch => {
 
     dispatch({
       type: RECOMMEND_SUCCESS,
-      payload: data
+      payload: data.products
     })
   } catch (error) {
     dispatch({

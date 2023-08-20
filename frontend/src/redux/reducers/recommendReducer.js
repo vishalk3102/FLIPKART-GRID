@@ -5,18 +5,18 @@ import {
   CLEAR_ERRORS
 } from '../../constants/recommendConstants'
 
-const initialState = {
-  interaction: [
-    'B019MDXIXG',
-    'B01ADDSL9U',
-    'B01B3Q4Q0O',
-    'B01DXHX81O',
-    'B01FWRXN0Y'
-  ],
-  message: ''
-}
+// const initialState = {
+//   interaction: [
+//     'B019MDXIXG',
+//     'B01ADDSL9U',
+//     'B01B3Q4Q0O',
+//     'B01DXHX81O',
+//     'B01FWRXN0Y'
+//   ],
+//   message: ''
+// }
 
-export const recommendReducer = (state = initialState, action) => {
+export const recommendReducer = (state = {}, action) => {
   switch (action.type) {
     case RECOMMEND_REQUEST:
       return {
@@ -26,7 +26,7 @@ export const recommendReducer = (state = initialState, action) => {
     case RECOMMEND_SUCCESS:
       return {
         loading: false,
-        message: action.payload
+        products: action.payload
       }
 
     case RECOMMEND_FAIL:
