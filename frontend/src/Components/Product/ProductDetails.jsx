@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import productImage from '../../Assets/productimage-1.jpg'
 import FeaturedProduct from './FeaturedProduct'
 import LikedProduct from './LikedProduct'
 import {
@@ -10,7 +9,8 @@ import {
 } from '../../redux/actions/productAction'
 import {
   getRecommend,
-  getRecommendProducts
+  getRecommendProducts,
+  getRecommendCategoryProducts
 } from '../../redux/actions/recommendAction'
 import toast from 'react-hot-toast'
 import Loader from '../Layout/Loader'
@@ -77,9 +77,9 @@ const ProductDetails = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const { product, loading, error } = useSelector(state => state.productDetails)
-  /* const { categoryProductIds, globalProductIds, flag } = useSelector(
+  const { categoryProductIds, globalProductIds, flag } = useSelector(
     state => state.recommend
-  ) */
+  )
 
   // const [productId, setProductId] = useState(params.id)
   // const [userId, setUserId] = useState(user.id)
@@ -90,21 +90,21 @@ const ProductDetails = () => {
       dispatch(clearErrors())
     }
     const interaction = ['B00M2L6KFY', 'B00JWXFDMG', 'B00W5T1H9W']
-    const globalProductIds = [
+    /*  const globalProductIds = [
       'B00GU82FQS',
       'B004POJT5O',
       'B000NXGR9M',
       'B00MN6TAA0',
       'B00LE5Y100'
-    ]
+    ] */
     dispatch(getProductDetails(params.id))
     console.log(product.product_category)
     dispatch(getRecommend(interaction, product.product_category))
   }, [dispatch, error, params.id, product.product_category])
-  /*  if (flag === true) {
+  if (flag === true) {
     dispatch(getRecommendProducts(globalProductIds))
-    dispatch(getRecommendProducts(categoryProductIds))
-  } */
+    dispatch(getRecommendCategoryProducts(categoryProductIds))
+  }
   return (
     <>
       <section class='py-8 sm:py-8'>
@@ -164,69 +164,6 @@ const ProductDetails = () => {
                 <h1 class='sm: text-2xl font-bold text-gray-900 sm:text-3xl capitalize'>
                   {product.product_title}
                 </h1>
-
-                {/* <div class='mt-5 flex items-center'>
-                <div class='flex items-center'>
-                  <svg
-                    class='block h-4 w-4 align-middle text-yellow-500'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 20 20'
-                    fill='currentColor'
-                  >
-                    <path
-                      d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'
-                      class=''
-                    ></path>
-                  </svg>
-                  <svg
-                    class='block h-4 w-4 align-middle text-yellow-500'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 20 20'
-                    fill='currentColor'
-                  >
-                    <path
-                      d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'
-                      class=''
-                    ></path>
-                  </svg>
-                  <svg
-                    class='block h-4 w-4 align-middle text-yellow-500'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 20 20'
-                    fill='currentColor'
-                  >
-                    <path
-                      d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'
-                      class=''
-                    ></path>
-                  </svg>
-                  <svg
-                    class='block h-4 w-4 align-middle text-yellow-500'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 20 20'
-                    fill='currentColor'
-                  >
-                    <path
-                      d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'
-                      class=''
-                    ></path>
-                  </svg>
-                  <svg
-                    class='block h-4 w-4 align-middle text-yellow-500'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 20 20'
-                    fill='currentColor'
-                  >
-                    <path
-                      d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'
-                      class=''
-                    ></path>
-                  </svg>
-                </div>
-                <p class='ml-2 text-sm font-medium text-gray-500'>
-                  1,209 Reviews
-                </p>
-              </div> */}
 
                 <h2 class='mt-8 text-base text-gray-900 font-bold'>
                   {' '}
@@ -303,51 +240,6 @@ const ProductDetails = () => {
                   </li>
                 </ul>
               </div>
-
-              {/*   <div class='lg:col-span-3'>
-              <div class='border-b border-gray-300'>
-                <nav class='flex gap-4'>
-                  <div
-                    title=''
-                    class='border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800'
-                  >
-                    {' '}
-                    Description{' '}
-                  </div>
-
-                  <div
-                    title=''
-                    class='inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600'
-                  >
-                    Reviews
-                    <span class='ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100'>
-                      {' '}
-                      1,209{' '}
-                    </span>
-                  </div>
-                </nav>
-              </div>
-
-              <div class='mt-8 flow-root sm:mt-12'>
-                <h1 class='text-3xl font-bold'>Delivered To Your Door</h1>
-                <p class='mt-4'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                  accusantium nesciunt fuga.
-                </p>
-                <h1 class='mt-8 text-3xl font-bold'>
-                  From the Fine Farms of Brazil
-                </h1>
-                <p class='mt-4'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                  numquam enim facere.
-                </p>
-                <p class='mt-4'>
-                  Amet consectetur adipisicing elit. Optio numquam enim facere.
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Dolore rerum nostrum eius facere, ad neque.
-                </p>
-              </div>
-            </div> */}
             </div>
           </div>
         ) : (
@@ -355,7 +247,7 @@ const ProductDetails = () => {
         )}
       </section>
       <div className=''>
-        {/* <LikedProduct /> */}
+        <LikedProduct />
         <FeaturedProduct />
       </div>
     </>

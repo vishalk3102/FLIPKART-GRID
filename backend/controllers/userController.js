@@ -151,7 +151,7 @@ exports.updateInteractions = catchAsyncErrors(async (req, res, next) => {
   // let userId = req.params.id
   let userId = `64dfa9f3e23a61884ac99b96`
   let product = `AJKSHDLSL`
-  let update = { $push: { interactions: { productId: product } } }
+  let update = { $push: { interactions: { product_id: product } } }
   const user = await User.findByIdAndUpdate(userId, update)
 
   // await User.findOneAndUpdate(userId, update)
